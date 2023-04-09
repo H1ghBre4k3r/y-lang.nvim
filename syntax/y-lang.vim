@@ -2,6 +2,8 @@ syn keyword whyKeyword let mut declare import
 
 syn keyword whyConditional if else 
 
+syn keyword whyRepeat while
+
 syn match whyOperator display "\%(+\|-\|/\|*\|=\|:=\|\^\|&\||\|!\|>\|<\|%\)=\?"
 
 syn match whyIdentifier '"([a-zA-z0-9]|_)*"'
@@ -30,6 +32,7 @@ syn region    whyAttribute   start="#\[" end="\]"
 
 hi def link whyKeyword Keyword 
 hi def link whyConditional Conditional
+hi def link whyRepeat Conditional
 hi def link whyOperator Operator
 hi def link whyIdentifier Identifier
 hi def link whyLineComment Comment
