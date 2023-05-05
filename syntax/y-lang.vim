@@ -1,12 +1,14 @@
-syn keyword whyKeyword let mut declare import 
+syn keyword whyKeyword mut import 
+syn keyword whyKeyword declare nextgroup=whyIdentifier skipwhite skipempty
+syn keyword whyKeyword let nextgroup=whyIdentifier skipwhite skipempty
+
+syn match whyIdentifier "\%(r#\)\=\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
 
 syn keyword whyConditional if else 
 
 syn keyword whyRepeat while
 
 syn match whyOperator display "\%(+\|-\|/\|*\|=\|:=\|\^\|&\||\|!\|>\|<\|%\)=\?"
-
-syn match whyIdentifier '"([a-zA-z0-9]|_)*"'
 
 syn match whyLineComment "//.*$"
 syn region whyBlockComment start=+/\*+ end=+\*/+
