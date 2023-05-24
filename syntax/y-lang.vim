@@ -30,6 +30,8 @@ syn keyword	whyType any int char str bool void unknown
 
 syn match whyFuncCall "\w\(\w\)*("he=e-1,me=e-1
 
+syn match whyImportModifer "@\w\(\w\)*"
+
 syn region    whyAttribute   start="#\[" end="\]" 
 
 hi def link whyKeyword Keyword 
@@ -45,4 +47,5 @@ hi def link whyCharacter Character
 hi def link whyType Type
 hi def link whyBoolean Boolean
 hi def link whyFuncCall Function
+hi def link whyImportModifer Function
 hi def link whyAttribute PreProc
