@@ -33,7 +33,7 @@ syn match   whyCharacter   /'\([^\\]\|\\\(.\|x\x\{2}\|u{\%(\x_*\)\{1,6}}\)\)'/
 
 syn keyword whyBoolean true false
 
-syn keyword	whyType any int char str bool void unknown i8 u8 i16 u16 i32 u32 i64 u64
+syn keyword	whyType any int char str bool void unknown i8 u8 i16 u16 i32 u32 i64 u64 f32 f64
 
 syn match whyFuncCall "\w\(\w\)*("he=e-1,me=e-1
 
