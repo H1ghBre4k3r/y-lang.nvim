@@ -1,6 +1,8 @@
 syn keyword whyKeyword mut import 
 syn keyword whyKeyword declare nextgroup=whyIdentifier skipwhite skipempty
-syn keyword whyKeyword let 
+syn keyword whyKeyword let
+
+syn keyword whyStructure struct enum nextgroup=whyIdentifier skipwhite skipempty
 
 syn match whyIdentifier "\%(r#\)\=\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
 
@@ -20,11 +22,22 @@ syn match whyOperator display "\%(+\|-\|/\|*\|=\|:=\|\^\|&\||\|!\|>\|<\|%\|\\\)=
 syn match whyLineComment "//.*$"
 syn region whyBlockComment start=+/\*+ end=+\*/+
 
-syn match whyDecimalNumber '\d\+'
-syn match whyHexNumber '0x\d\+'
+" Numbers
+syn match     whyDecNumber   display "\<[0-9][0-9_]*\%([iu]\%(size\|8\|16\|32\|64\|128\)\)\="
+syn match     whyHexNumber   display "\<0x[a-fA-F0-9_]\+\%([iu]\%(size\|8\|16\|32\|64\|128\)\)\="
+syn match     whyOctNumber   display "\<0o[0-7_]\+\%([iu]\%(size\|8\|16\|32\|64\|128\)\)\="
+syn match     whyBinNumber   display "\<0b[01_]\+\%([iu]\%(size\|8\|16\|32\|64\|128\)\)\="
 
-hi def link whyDecimalNumber whyNumber
-hi def link whyHexNumber whyNumber
+syn match     whyFloat       display "\<[0-9][0-9_]*\.\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\|\.\)\@!"
+syn match     whyFloat       display "\<[0-9][0-9_]*\%(\.[0-9][0-9_]*\)\%([eE][+-]\=[0-9_]\+\)\=\(f32\|f64\)\="
+syn match     whyFloat       display "\<[0-9][0-9_]*\%(\.[0-9][0-9_]*\)\=\%([eE][+-]\=[0-9_]\+\)\(f32\|f64\)\="
+syn match     whyFloat       display "\<[0-9][0-9_]*\%(\.[0-9][0-9_]*\)\=\%([eE][+-]\=[0-9_]\+\)\=\(f32\|f64\)"
+
+hi def link whyDecNumber    whyNumber
+hi def link whyHexNumber    whyNumber
+hi def link whyOctNumber    whyNumber
+hi def link whyBinNumber    whyNumber
+hi def link whyFloat        whyNumber
 
 syn region whyStrings start=+"+ end=+"+ end=+$+ 
 
@@ -42,6 +55,8 @@ syn match whyImportModifer "@\w\(\w\)*"
 syn region    whyAttribute   start="#\[" end="\]" 
 
 hi def link whyKeyword          Keyword 
+
+hi def link whyStructure        Keyword
 
 hi def link whyConditional      Conditional
 hi def link whyRepeat           Conditional
