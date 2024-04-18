@@ -7,12 +7,31 @@ function M.setup()
 	end
 	vim.g.loaded_y_lang = 1
 
-	vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead", "BufWrite", "BufWritePre" }, {
+	local lsp_id = nil
+	vim.api.nvim_create_autocmd({ "BufNew", "BufNewFile", "BufRead", "BufWrite", "BufWritePre" }, {
 		pattern = "*.why",
-		callback = function()
+		callback = function(args)
+			if lsp_id == nil then
+				lsp_id = vim.lsp.start_client({
+					name = "ylsp",
+					cmd = { "ylsp" },
+					root_dir = vim.fs.dirname(vim.fs.find({ "hello.why" }, { upward = false })[1]),
+				})
+			end
+
+			if lsp_id ~= nil then
+				vim.lsp.buf_attach_client(args.buffer, lsp_id)
+			end
+
 			vim.bo.filetype = "y-lang"
 		end,
 	})
+
+	-- vim.api.nvim_create_autocmd("LspAttach", {
+	-- 	callback = function(args)
+	-- 		print(vim.inspect(args))
+	-- 	end,
+	-- })
 end
 
 return M
