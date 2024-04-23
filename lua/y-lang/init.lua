@@ -13,8 +13,8 @@ function M.setup()
 		callback = function(args)
 			if lsp_id == nil then
 				lsp_id = vim.lsp.start_client({
-					name = "ylsp",
-					cmd = { "ylsp" },
+					name = "yls",
+					cmd = { "yls" },
 					root_dir = vim.fs.dirname(vim.fs.find({ "hello.why" }, { upward = false })[1]),
 				})
 			end
