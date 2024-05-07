@@ -15,7 +15,7 @@ function M.setup()
 				lsp_id = vim.lsp.start_client({
 					name = "yls",
 					cmd = { "yls" },
-					root_dir = vim.fs.dirname(vim.fs.find({ "hello.why" }, { upward = false })[1]),
+					root_dir = vim.fs.dirname(vim.fs.find({ "*.why" }, { upward = false })[1]),
 				})
 			end
 

@@ -2,7 +2,7 @@ syn keyword whyKeyword mut import
 syn keyword whyKeyword declare nextgroup=whyIdentifier skipwhite skipempty
 syn keyword whyKeyword let
 
-syn keyword whyStructure struct enum nextgroup=whyIdentifier skipwhite skipempty
+syn keyword whyStructure class instance struct enum nextgroup=whyIdentifier skipwhite skipempty
 
 syn match whyIdentifier "\%(r#\)\=\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
 
@@ -44,7 +44,8 @@ syn region whyStrings start=+"+ end=+"+ end=+$+
 syn match   whyCharacter   /b'\([^\\]\|\\\(.\|x\x\{2}\)\)'/ 
 syn match   whyCharacter   /'\([^\\]\|\\\(.\|x\x\{2}\|u{\%(\x_*\)\{1,6}}\)\)'/ 
 
-syn keyword whyBoolean true false
+syn keyword whyBoolean      true false
+syn keyword whyThis         this
 
 syn keyword	whyType any int char str bool void unknown i8 u8 i16 u16 i32 u32 i64 u64 f32 f64
 
@@ -80,6 +81,8 @@ hi def link whyCharacter        Character
 hi def link whyType             Type
 
 hi def link whyBoolean          Boolean
+
+hi def link whyThis             Constant
 
 hi def link whyLineComment      Comment
 hi def link whyBlockComment     Comment
